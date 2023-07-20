@@ -1,0 +1,28 @@
+apply plugin: 'java'
+
+group 'org.makaia'
+version '1.0-SNAPSHOT'
+java.sourceCompatibility = JavaVersion.VERSION_11
+
+repositories {
+    mavenCentral()
+    jcenter()
+}
+
+dependencies {
+    implementation "com.github.javafaker:javafaker:1.0.2"
+}
+
+tasks.withType(Test) {
+    useJUnitPlatform()
+}
+
+test {
+    useJUnitPlatform()
+}
+
+compileJava.options.encoding = 'UTF-8'
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
