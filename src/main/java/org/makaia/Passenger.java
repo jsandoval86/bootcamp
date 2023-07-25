@@ -1,6 +1,6 @@
 package org.makaia;
 
-public class Passenger {
+public class Passenger implements Comparable<Passenger>{
     private String name;
     private int age;
     private String career;
@@ -37,5 +37,10 @@ public class Passenger {
 
     public boolean isCareer(Career career) {
         return this.career.equals(career.getNameInSpanish());
+    }
+
+    @Override
+    public int compareTo(Passenger p) {
+        return Integer.compare(this.age, p.getAge());
     }
 }

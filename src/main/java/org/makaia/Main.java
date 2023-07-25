@@ -1,5 +1,9 @@
 package org.makaia;
 
+import org.makaia.list.CustomGenericStack;
+import org.makaia.list.CustomIntStack;
+
+import java.time.temporal.ChronoUnit;
 import java.util.*;
 
 public class Main {
@@ -8,23 +12,41 @@ public class Main {
         DataBase db = new DataBase();
 
         List<Passenger> passengers = new ArrayList<>(db.getAllPassengers());
-
         // Lists, Arrays
         List<Passenger> passengersLess18Years = getPassengersLess18Years(passengers);
         List<Passenger> passengersOver65YearsOld = getPassengersOver65YearsOld(passengers);
         int average = getAverage(passengers);
         List<Passenger> passengersDoctorProfession = getPassengersDoctorProfession(passengers);
-        /**
-         *   key -> value
-         *   nacionality -> list(passengers)
-         *
-         *   AMERICAN -> list(american passengers)
-         *   COLOMBIAN -> list(colombian passengers)
-         *   SPANISH -> list(spanish passengers)
-         */
-
         Map<String, List<Passenger>> map = getPassengersByNacionality(passengers);
         Set<String> cities = getDestinyCities(passengers);
+
+        // stacks
+        CustomIntStack customIntStack = createCustomIntStack();
+
+        // generic stacks
+        CustomGenericStack<String> stringStack = new CustomGenericStack<>();
+        CustomGenericStack<Integer> integerStacks = new CustomGenericStack<>();
+
+        // queues
+        Queue<Passenger> passengerQueue = db.getAllPassengersOrderByAge();
+        board(passengerQueue);
+
+    }
+
+    private static void board(Queue<Passenger> passengerQueue) {
+        for (int i= 0; i < passengerQueue.size(); i++){
+            Passenger passenger = passengerQueue.poll();
+            // callOtherMethod(passager)
+        }
+    }
+
+    private static CustomIntStack createCustomIntStack() {
+        CustomIntStack customIntStack = new CustomIntStack();
+        customIntStack.push(1);
+        customIntStack.push(2);
+        customIntStack.push(3);
+        customIntStack.search(5);
+        return customIntStack;
     }
 
     private static Set<String> getDestinyCities(List<Passenger> passengers) {
